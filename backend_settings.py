@@ -12,6 +12,9 @@ avaliable_model_ids_sources = {
     "facebook/opt-6.7b": {"source": "huggingface"},
     "facebook/opt-30b": {"source": "huggingface"},
     "facebook/opt-66b": {"source": "huggingface"},
+    "microsoft/phi-2": {"source": "huggingface"},
+    "EleutherAI/pythia-1.4b": {"source": "huggingface"},
+    "openai-community/gpt2-xl": {"source": "huggingface"},
     # "DiT-XL/2": {"source": "DiT"},
     # "DiT-XL/4": {"source": "DiT"},
 }

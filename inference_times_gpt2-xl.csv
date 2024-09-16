@@ -1,0 +1,10 @@
+model,sequence_length,users,inference_time
+openai-community/gpt2-xl,32,8,8.899381206559484
+openai-community/gpt2-xl,32,16,9.11247033839228
+openai-community/gpt2-xl,32,32,9.538648602057878
+openai-community/gpt2-xl,64,8,17.6872992289389
+openai-community/gpt2-xl,64,16,18.26523528038585
+openai-community/gpt2-xl,64,32,19.42110738327974
+openai-community/gpt2-xl,128,8,35.76382188463022
+openai-community/gpt2-xl,128,16,37.57213838623793
+openai-community/gpt2-xl,128,32,41.188771389453365

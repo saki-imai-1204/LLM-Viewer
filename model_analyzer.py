@@ -36,14 +36,16 @@ class ModelAnalyzer:
         assert config_file is not None, "config file is not found, please specify it manually."
         print(f"use config file {config_file} for {model_id}")
         if source == "huggingface":
+            print(model_id)
             self.model_params = AutoConfig.from_pretrained(model_id, trust_remote_code=True)
+            print(self.model_params)
         else:
             if not os.path.exists(f"model_params/{source}.py"):
                 raise Exception(f"model_params/{source}.py is not found")
             # from model_params.DiT import model_params
             module = importlib.import_module(f"model_params.{source}")
             self.model_params = module.model_params[model_id]
-        self.config = importlib.import_module(config_file.replace("/", ".").replace(".py", ""))
+        self.config = importlib.import_module(config_file.replace(".py", "").replace("/", "."))
 
         # temporary variables
         self.results = None
@@ -479,6 +481,20 @@ class ModelAnalyzer:
             result = self.analyze(i, batchsize, w_bit, a_bit, kv_bit, use_flashattention=use_flashattention)
             inference_time += result["total_results"]["decode"]["inference_time"]
         return {"inference_time": inference_time, "prefill_time": prefill_time}
+    
+    def analyze_generate(
+        self, prompt_len, gen_len, batchsize, w_bit=16, a_bit=16, kv_bit=None, use_flashattention = False
+    ):
+        results = []
+        prefill_result = self.analyze(
+            prompt_len, batchsize, w_bit, a_bit, kv_bit, use_flashattention=use_flashattention
+        )
+        results.append(prefill_result)
+    
+        for i in range(prompt_len, prompt_len + gen_len):
+            decode_result = self.analyze(i, batchsize, w_bit, a_bit, kv_bit, use_flashattention=use_flashattention)
+            results.append(decode_result)
+        return results
 
     def get_hardware_info(self):
         bandwidth = hardware_params[self.hardware]["bandwidth"]

@@ -1,0 +1,10 @@
+model,sequence_length,users,inference_time
+EleutherAI/pythia-1.4b,32,8,7.4088304607073985
+EleutherAI/pythia-1.4b,32,16,7.544131218520898
+EleutherAI/pythia-1.4b,32,32,7.814732734147912
+EleutherAI/pythia-1.4b,64,8,14.692797044887469
+EleutherAI/pythia-1.4b,64,16,15.058944674983923
+EleutherAI/pythia-1.4b,64,32,15.79123993517685
+EleutherAI/pythia-1.4b,128,8,29.576314501350474
+EleutherAI/pythia-1.4b,128,16,30.71974016411575
+EleutherAI/pythia-1.4b,128,32,33.00659148964631
